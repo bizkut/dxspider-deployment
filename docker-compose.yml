@@ -15,8 +15,6 @@
 # Changes by Joe Fellner OE5JFE <oe5jfe <at> oevsv <dot> at>
 # DXSpider with Adminwebconsole , MariaDB, Webviewer of latest spots
 
-version: "3.9"
-
 services:
   cluster:
     build:
@@ -64,18 +62,20 @@ services:
     expose:
       - ${CLUSTER_PORT} # DXSpider Cluster
       - ${CLUSTER_SYSOP_PORT} # Sysop Console via ttyd
-    #restart: unless-stopped
+    restart: unless-stopped
     logging:
       driver: "json-file"
       options:
         max-size: "200k"
         max-file: "10"
     networks:
-      - dxspidernet
+      dxspidernet:
+        aliases:
+          - ${CLUSTER_DX_HOSTNAME}
 
   cluster-db:
     image: mariadb
-    #restart: unless-stopped
+    restart: unless-stopped
     environment:
       MARIADB_ROOT_PASSWORD: ${CLUSTER_DB_ROOT_PWD}
       MARIADB_DATABASE: ${CLUSTER_DB_NAME}
@@ -109,21 +109,25 @@ services:
       dockerfile: Dockerfile
     environment:
       - CLUSTERWEB_DB_CONTAINERHOSTNAME=${CLUSTER_DB_HOSTNAME}
-      - CLUSTERWEB_DB_PORT=${CLUSTER_DB_PORT}
       - CLUSTERWEB_USER=${CLUSTER_DB_USER}
       - CLUSTERWEB_PASSWORD=${CLUSTER_DB_PASS}
       - CLUSTERWEB_DATABASE=${CLUSTER_DB_NAME}
       - CLUSTER_CALLSIGN=${CLUSTER_CALLSIGN}
+      - CLUSTER_SYSOP_EMAIL=${CLUSTER_SYSOP_EMAIL}
+      - CLUSTER_DX_HOSTNAME=${CLUSTER_DX_HOSTNAME}
+      - CLUSTER_PORT=${CLUSTER_PORT}
+      - CLUSTER_SYSOP_CALLSIGN=${CLUSTER_SYSOP_CALLSIGN}
+      - CLUSTER_SYSOP_PASSWORD=${CLUSTER_SYSOP_PASSWORD}
     depends_on:
       cluster-db:
         condition: service_healthy
     volumes:
       - ./cluster-web/init:/docker-entrypoint-init.d/
     ports:
-      - ${CLUSTER_WEBSERVER_EXPOSEDPORT}:8080 # NGINX internal port 8080
+      - ${CLUSTER_WEBSERVER_EXPOSEDPORT}:8080 # bjoern internal port 8080
     expose:
       - ${CLUSTER_WEBSERVER_EXPOSEDPORT}
-    #restart: unless-stopped
+    restart: unless-stopped
     networks:
       - dxspidernet
     logging:
