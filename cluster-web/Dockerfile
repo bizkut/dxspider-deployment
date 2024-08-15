@@ -11,4 +11,8 @@ COPY . ./
 RUN pip install -r requirements.txt
 
 EXPOSE 8080
-CMD [ "python", "wsgi.py" ]
+
+# COPY entrypoint.sh file
+COPY entrypoint.sh /entrypoint.sh
+    
+ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]

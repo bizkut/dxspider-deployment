@@ -11,3 +11,4 @@ sed -e 's/\("host":\)"localhost"/\1"${CLUSTERWEB_DB_CONTAINERHOSTNAME}"/' \
     -e 's/\("user":\) "myuser"/\1 "${CLUSTER_SYSOP_CALLSIGN}"/' \
     -e 's/\("password":\) ""/\1 "${CLUSTER_SYSOP_PASSWORD}"/' /app/cfg/config.json.template > /app/cfg/config.json
 
+python3 /app/wsgi.py
