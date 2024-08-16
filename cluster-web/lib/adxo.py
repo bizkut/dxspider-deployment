@@ -16,7 +16,7 @@ def remove_control_characters(s):
 
 def get_adxo_events():
     # URL del file XML RSS
-    rss_url = "https://www.ng3k.com/adxo.xml"    
+    rss_url = "https://www.ng3k.com/adxo.xml"
 
     try:
 
@@ -41,37 +41,56 @@ def get_adxo_events():
             start_callsign_idx = title.find("--")
             end_callsign_idx = title.find("--", start_callsign_idx + 2)
             prop["callsign"] = title[start_callsign_idx + 2:end_callsign_idx].strip()
-           
+
             #period
-            period = title[title.find(":")+1: start_callsign_idx] 
+            period = title[title.find(":")+1: start_callsign_idx]
             comma_year_idx = period.find(",")
+            end_year_idx = period.find(",", comma_year_idx + 2)
 
             #start date - end date
-            if comma_year_idx > 0:
-                #Mar 23-Apr 1, 2024 or Mar 23-30, 2024 
+            if end_year_idx > 0:
+                year = period[comma_year_idx+1:].strip()
+                end_year = period[end_year_idx+1:].strip()
+
+                start_year_idx = period[:period.find("-")]
+                start_year_date = start_year_idx.find(",")
+                start_year = start_year_idx[start_year_date+1:].strip()
+
+                end_year_date_idx = year.find(",")
+                end_year_date = start_year_idx.find(",")
+
+                date_start = period[:period.find(",")]+" "+start_year
+                date_end = year[year.find("-")+1:end_year_date_idx]+" "+end_year
+                match = re.search(r"^([A-Za-z]{3}) \d{1,2} \d{4}$", date_end)
+                if match:
+                    pass
+                else:
+                    date_end=date_start[:5]+date_end
+            elif comma_year_idx > 0:
+                #Mar 23-Apr 1, 2024 or Mar 23-30, 2024
                 year = period[comma_year_idx+1:].strip()
                 date_start = period[:period.find("-")]+" "+year
                 date_end = period[period.find("-")+1:comma_year_idx]+" "+year
                 match = re.search(r"^([A-Za-z]{3}) \d{1,2} \d{4}$", date_end)
                 if match:
-                    #Mar 23-Apr 1, 2024    
+                    #Mar 23-Apr 1, 2024
                     pass
                 else:
-                    #Mar 23-30, 2024 
-                    date_end=date_start[:5]+date_end                 
+                    #Mar 23-30, 2024
+                    date_end=date_start[:5]+date_end
             else:
-                #Mar 23 2023-Apr 1 2024 
+                #Mar 23 2023-Apr 1 2024
                 date_start = period[:period.find("-")]
                 date_end = period[period.find("-")+1:]
 
             prop["start"]  = datetime.strptime(date_start.strip(), "%b %d %Y")
             prop["end"] = datetime.strptime(date_end.strip(), "%b %d %Y")
-            
+
             prop["summary"] = remove_control_characters(title)
             prop["description"] = remove_control_characters(item.description)
 
-            logging.debug("date start: "+ str(prop["start"]) )                
-            logging.debug("date end: "+ str(prop["end"]) )                   
+            logging.debug("date start: "+ str(prop["start"]) )
+            logging.debug("date end: "+ str(prop["end"]) )
 
             #append only valids (in date) events
             if prop["start"] <= now  and prop["end"] >= now:
@@ -84,7 +103,7 @@ def get_adxo_events():
             logging.warn("No ADXO events founds")
 
         return events
-    
+
     except Exception as e1:
         logging.error(e1)
         return
