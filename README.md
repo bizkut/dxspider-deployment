@@ -1,4 +1,4 @@
-# DXSpider Deployment
+# DXSpider Mojo Branch Deployment With Web GUI inside Docker container
 
 This is a deployment project for [DX Spider](http://wiki.dxcluster.org/index.php/Main_Page)
 Amateur Radio DX Cluster software, independent of DX Spider development.
@@ -7,10 +7,12 @@ This project focuses on easy DX Spider deployment in virtualised/cloud
 environments and as such its focus is primarily supporting telnet nodes running
 on TCP networks.
 
-This repo adds the connection to a mariadb container and a simple webinterface.
+This repo adds the connection to a mariadb container and a Web GUI.
+
 In addition the DXspider container has a ttyd based webconsole to login for sysop activities.
 
 This repo uses DX Spider from the MOJO branch and Web GUI from https://github.com/coulisse/spiderweb
+
 
 
 
