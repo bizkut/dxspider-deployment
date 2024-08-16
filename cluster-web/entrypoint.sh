@@ -18,5 +18,5 @@ sed -e "s/\(\"host\"\:\).*$/\1\"${CLUSTERWEB_DB_CONTAINERHOSTNAME}\",/" \
     -e "s/\(\"enable_cq_filter\"\:\).*$/\1\"${SPIDERWEB_ENABLE_CQFILTER:-n}\",/" \
  < /app/cfg/config.json.template > /app/cfg/config.json
 
-cat /app/cfg/config.json
+# cat /app/cfg/config.json
 python3 /app/wsgi.py
