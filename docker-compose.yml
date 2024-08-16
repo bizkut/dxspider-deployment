@@ -20,9 +20,13 @@ services:
     build:
       context: ./dxspider
       dockerfile: Dockerfile
+      platforms:
+        - "linux/amd64"
+        - "linux/arm64"
       args:
         - SPIDER_VERSION=${CLUSTER_DXSPIDER_BRANCH}
         - SPIDER_USERNAME=${CLUSTER_DB_USER}
+    image: bizkut/cluster-dxspider
     environment:
       - SPIDER_INSTALL_DIR=/spider #don't change that
       - CLUSTER_CALLSIGN=${CLUSTER_CALLSIGN}
@@ -107,6 +111,10 @@ services:
     build:
       context: ./cluster-web
       dockerfile: Dockerfile
+      platforms:
+        - "linux/amd64"
+        - "linux/arm64"
+    image: bizkut/cluster-web
     environment:
       - CLUSTERWEB_DB_CONTAINERHOSTNAME=${CLUSTER_DB_HOSTNAME}
       - CLUSTERWEB_USER=${CLUSTER_DB_USER}
