@@ -22,6 +22,8 @@ docker compose config
 ```
 This should show no errors. Don't miss to set safe passwords for the sysop.
 
+Edit DXspider file `crontab`, `motd`, `startup` and put your connect files into `connect` folder.
+
 Quick Start. This will pull the prebuilt images from Dockerhub registries.
 ```sh
 docker compose up -d
