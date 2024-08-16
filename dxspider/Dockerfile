@@ -17,7 +17,7 @@
 # Add copy of connect scripts, cronjobs and motd files 
 
 
-FROM alpine:latest
+FROM alpine:3.20
 
 
 ARG SPIDER_GIT_REPOSITORY=git://scm.dxcluster.org/scm/spider
@@ -64,6 +64,7 @@ RUN apk update \
     mysql-dev \
     gcc \
     ttyd \
+    wget \
     && cpanm --no-wget Data::Structure::Util \
     && adduser -D -u ${SPIDER_UID} -h ${SPIDER_INSTALL_DIR} ${SPIDER_USERNAME} \
     && git config --global --add safe.directory ${SPIDER_INSTALL_DIR} \

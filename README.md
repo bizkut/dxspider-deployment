@@ -32,7 +32,7 @@ Quick Start. This will pull the prebuilt images from Dockerhub registries.
 ```sh
 docker compose up -d
 ```
-DXspider will be ready at Telnet port 7300 and Spiderweb at port 5000.
+DXspider will be ready at Telnet port 7300 and Spiderweb at port 80.
 
 To download, build and run the containers:
 
