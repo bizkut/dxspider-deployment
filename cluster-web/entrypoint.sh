@@ -13,8 +13,8 @@ sed -e "s/\(\"host\"\:\).*$/\1\"${CLUSTERWEB_DB_CONTAINERHOSTNAME}\",/" \
     -e "s/\(\"interval\"\:\).*$/\1${SPIDERWEB_PAGEREFRESH_MS:-15000}/" \
     -e "s/\(\"telnet_host\"\:\).*$/\1\"${CLUSTER_DX_HOSTNAME}\",/" \
     -e "s/\(\"telnet_port\"\:\).*$/\1\"${CLUSTER_PORT}\",/" \
-    -e "s/\(\"telnet_user\"\:\).*$/\1\"${CLUSTER_SYSOP_CALLSIGN}\",/" \
-    -e "s/\(\"telnet_password\"\:\).*$/\1\"${CLUSTER_SYSOP_PASSWORD}\"/" \
+    -e "s/\(\"telnet_user\"\:\).*$/\1\"${SPIDERWEB_TELNET_USER}\",/" \
+    -e "s/\(\"telnet_password\"\:\).*$/\1\"${SPIDERWEB_TELNET_PASSWORD}\"/" \
     -e "s/\(\"enable_cq_filter\"\:\).*$/\1\"${SPIDERWEB_ENABLE_CQFILTER:-n}\",/" \
  < /app/cfg/config.json.template > /app/cfg/config.json
 
