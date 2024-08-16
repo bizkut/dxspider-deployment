@@ -88,3 +88,13 @@ docker compose exec cluster sh
 
 You can use the ttyd Webconsole on `localhost:8080` to directy access the cluster sysop console.
 Login with sysop username and password.
+
+## Screenshots
+
+
+![image](https://github.com/user-attachments/assets/88e42cc2-2dde-482d-a15b-0f4819ceafef)
+![image](https://github.com/user-attachments/assets/c751c659-447b-448d-aa46-b3f6cbc06831)
+![image](https://github.com/user-attachments/assets/23df4eac-b52f-4ec7-b447-28e3f002f3fe)
+![image](https://github.com/user-attachments/assets/41be85ee-2e33-46c1-b9a5-b1cacc75f12a)
+![image](https://github.com/user-attachments/assets/2241cc0b-1b0f-4ff1-9dae-ade3a2d2342c)
+![image](https://github.com/user-attachments/assets/f41976e9-1e07-485f-80ea-206af5af5190)
