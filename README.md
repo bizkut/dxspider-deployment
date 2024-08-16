@@ -22,6 +22,12 @@ docker compose config
 ```
 This should show no errors. Don't miss to set safe passwords for the sysop.
 
+Quick Start. This will pull the prebuilt images from Dockerhub registries.
+```sh
+docker compose up -d
+```
+DXspider will be ready at Telnet port 7300 and Spiderweb at port 5000.
+
 To download, build and run the containers:
 
 ```sh
