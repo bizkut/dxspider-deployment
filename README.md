@@ -26,16 +26,6 @@ docker compose config
 ```
 This should show no errors. Don't miss to set safe passwords for the sysop.
 
-Edit DXspider file `crontab`, `motd`, `startup` and put your connect files into `connect` folder in `dxspider` directory.
-
-## Please double check crontab, motd, startup and connect scripts inside dxspider directory!
-
-Quick Start. This will pull the prebuilt images from Dockerhub registries.
-```sh
-docker compose up -d
-```
-DXspider will be ready at Telnet port 7300 and Spiderweb at port 80.
-
 To download, build and run the containers:
 
 ```sh
