@@ -22,7 +22,7 @@ FROM alpine:latest
 
 ARG SPIDER_GIT_REPOSITORY=git://scm.dxcluster.org/scm/spider
 # SPIDER_VERSION can be "mojo" or "master"
-ARG SPIDER_VERSION=master
+ARG SPIDER_VERSION=${SPIDER_VERSION}
 
 ARG SPIDER_INSTALL_DIR=${SPIDER_INSTALL_DIR:-/spider}
 ARG SPIDER_USERNAME=${SPIDER_USERNAME:-sysop}

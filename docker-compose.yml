@@ -121,8 +121,8 @@ services:
     depends_on:
       cluster-db:
         condition: service_healthy
-    #volumes:
-    #  - ./cluster-web/init:/docker-entrypoint-init.d/
+    volumes:
+      - ./cluster-web/init:/docker-entrypoint-init.d/
     ports:
       - ${CLUSTER_WEBSERVER_EXPOSEDPORT}:8080 # bjoern internal port 8080
     expose:
