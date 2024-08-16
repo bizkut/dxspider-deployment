@@ -10,7 +10,7 @@ on TCP networks.
 This repo adds the connection to a mariadb container and a simple webinterface.
 In addition the DXspider container has a ttyd based webconsole to login for sysop activities.
 
-This repo uses DX Spider from the MOJO branch and spiderweb Web GUI from https://github.com/coulisse/spiderweb
+This repo uses DX Spider from the MOJO branch and Web GUI from https://github.com/coulisse/spiderweb
 
 
 
@@ -26,7 +26,7 @@ This should show no errors. Don't miss to set safe passwords for the sysop.
 
 Edit DXspider file `crontab`, `motd`, `startup` and put your connect files into `connect` folder in `dxspider` directory.
 
-## Please double check crontab and connect scripts!
+## Please double check crontab, motd, startup and connect scripts!
 
 Quick Start. This will pull the prebuilt images from Dockerhub registries.
 ```sh
